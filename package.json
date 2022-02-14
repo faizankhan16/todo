@@ -1,8 +1,10 @@
 {
   "name": "react-todo-app",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "https://faizankhan16.github.io/todo/",
   "devDependencies": {
+    "nodemon": "^2.0.15",
     "react-scripts": "0.9.0"
   },
   "dependencies": {
