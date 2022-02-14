@@ -5,6 +5,6 @@ describe('First test', () => {
         cy.visit("/")
     });
     it('verify todo text', () => {
-        cy.contains('Things To Do!!!');
+        cy.contains('Things To Do');
     });
 });
