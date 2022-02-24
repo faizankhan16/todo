@@ -1,46 +1,27 @@
 /// <reference types="Cypress" />
 
 describe('First test', () => {
-    it('Write text', () => {
+    beforeEach('Write text', () => {
         cy.visit("/")
+        // cy.contains('[class="todolist"]', 'Things To Do')
     });
+
     it('verify todo text', () => {
         cy.contains('Things To Do');
     });
 
-    //Checking the boxes
-    it('checking the checkbox', () => {
-        cy.get('input[type="checkbox"]').eq(0).check();
-        cy.get('input[type="checkbox"]').eq(1).check();
-        cy.get('input[type="checkbox"]').eq(2).check();
-    });
-
-    //Unchecking the boxes
-    it('Unchecking the checkbox', () => {
-        cy.get('input[type="checkbox"]').eq(0).uncheck();
-        // cy.get('input[type="checkbox"]').eq(1).uncheck();
-        // cy.get('input[type="checkbox"]').eq(2).uncheck();
-    })
-
-    // it('Verify if the checkboxes have been checked', () => {
-    //     cy.get('input[type="checkbox"]').eq(0).should('be.checked');
-    //     cy.get('input[type="checkbox"]').eq(1).should('be.checked')
-    // })
-
-    //Verifying if the boxes are checked/unchecked
-    it('Verify if some boxes are unchecked', () => {
-        cy.get('input[type="checkbox"]').eq(0).should('not.be.checked')
-        cy.get('input[type="checkbox"]').eq(1).should('be.checked')
-        cy.get('input[type="checkbox"]').eq(2).should('be.checked')
+    //Checking and unchecking the boxes
+    it.only('checking the checkbox and strikethrough on the text after it is checked', () => {
+        cy.get('input[type="checkbox"]').eq(0).check().uncheck().should('not.be.checked');
+        cy.get('input[type="checkbox"]').eq(1).check().should('be.checked');
+        cy.get('input[type="checkbox"]').eq(2).check().should('be.checked');
+        cy.get('label').eq(1).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
+        cy.get('label').eq(2).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
     })
 
     //Entering a new task
-    it('Enter a new task', () => {
+    it('Enter a new task and verify if new item is created when only spaces are typed in the Add new', () => {
         cy.get('[data-cy="addNew"]').type('New Task').type('{enter}');
-    })
-
-    //Verify if new item is created if only spaces are typed in the Add new
-    it('New item is created if only spaces are typed in the Add new', () => {
         cy.get('[data-cy="addNew"]').type('      ').type('{enter}');
         cy.get('[class="list-unstyled"]').should('not.contain', '      ')
     })
@@ -48,18 +29,8 @@ describe('First test', () => {
     //Verifying the Search functionality
     it('Verify the Search functionality', () => {
         cy.get('[class="button search "]').click()
+        cy.get('[data-cy="search"]').type('Build a React App').type('{enter}');
     })
-
-    //Searching an item
-    // it('Searching an item', () => {
-    //     cy.get('[data-cy="search"]').type('Build a React App').type('{enter}');
-    // })
-
-    //Verify if the checked items have a strikethrough on the texts
-    // it('Strikethrough on the text after it is checked', () => {
-    //     cy.get('input[type="checkbox"]').eq(1).should('have.css', 'text-decoration', 'line-through')
-    //     cy.get('input[type="checkbox"]').eq(2).should('have.css', 'text-decoration', 'line-through')
-    // })
 
     //Verify if the All button shows the checked and unchecked tasks
     it('Checking the All button', () => {
