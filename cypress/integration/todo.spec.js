@@ -12,11 +12,12 @@ describe('First test', () => {
 
     //Checking and unchecking the boxes
     it.only('checking the checkbox and strikethrough on the text after it is checked', () => {
-        cy.get('input[type="checkbox"]').eq(0).check().uncheck().should('not.be.checked');
-        cy.get('input[type="checkbox"]').eq(1).check().should('be.checked');
-        cy.get('input[type="checkbox"]').eq(2).check().should('be.checked');
-        cy.get('label').eq(1).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
-        cy.get('label').eq(2).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
+        cy.contains('div', 'Things To Do').find('[type="checkbox"]').eq(0).check()
+        // cy.get('input[type="checkbox"]').eq(0).check().uncheck().should('not.be.checked');
+        // cy.get('input[type="checkbox"]').eq(1).check().should('be.checked');
+        // cy.get('input[type="checkbox"]').eq(2).check().should('be.checked');
+        // cy.get('label').eq(1).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
+        // cy.get('label').eq(2).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
     })
 
     //Entering a new task
@@ -32,10 +33,10 @@ describe('First test', () => {
         cy.get('[data-cy="search"]').type('Build a React App').type('{enter}');
     })
 
-    //Verify if the All button shows the checked and unchecked tasks
-    it('Checking the All button', () => {
-        cy.get('[class="selected"]').click()
-        cy.get('[class="list-unstyled"]').should('be.checked', 'not.be.checked')
+    // //Verify if the All button shows the checked and unchecked tasks
+    // it('Checking the All button', () => {
+    //     cy.get('[class="selected"]').click()
+    //     cy.get('[class="list-unstyled"]').should('be.checked', 'not.be.checked')
 
-    })
+    // })
 })
