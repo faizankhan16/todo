@@ -23,5 +23,16 @@
     "eject": "react-scripts eject",
     "e2e": "npx cypress open",
     "cy-run": "npx cypress run"
+  },
+  "description": "This is a sample react todo app done step-by-step.\r This sample app was a part of react workshop.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faizankhan16/todo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/faizankhan16/todo/issues"
   }
 }

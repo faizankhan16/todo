@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function SearchBox(props) {
-    const {query, setSearchQuery} = props;
+    const { query, setSearchQuery } = props;
 
     return (
         <input
@@ -10,6 +10,7 @@ export default function SearchBox(props) {
             value={query}
             onChange={e => setSearchQuery(e.target.value)}
             placeholder="Search"
+            data-cy="search"
         />
     );
 }
