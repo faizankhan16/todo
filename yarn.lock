@@ -2026,10 +2026,15 @@
   dependencies:
     "cssom" "0.3.x"
 
-"cypress@^9.4.1":
-  "integrity" "sha512-+JgMG9uT+QFx97JU9kOHE3jO3+0UdkQ9H1oCBiC7A74qme7Jkdy2sYDBCPjjGczutnWnGUTMRlwiNMP/Uq6LrQ=="
-  "resolved" "https://registry.npmjs.org/cypress/-/cypress-9.4.1.tgz"
-  "version" "9.4.1"
+"cypress-xpath@^1.6.2":
+  "integrity" "sha512-mtwJPl840GQPGtb480fKR5vDIcijBHhAVwby5/AIPIT/UVT7UJhM2L42/R+venR7N01I0PoOJErb6UiMbCyUxg=="
+  "resolved" "https://registry.npmjs.org/cypress-xpath/-/cypress-xpath-1.6.2.tgz"
+  "version" "1.6.2"
+
+"cypress@^9.5.0":
+  "integrity" "sha512-rC5QPolKsVjJ8QJZ7IeZ6HlKM4gswBGZc0XvoAJNL8urQCSL8zTX0A/ai/h35WfF47NQ0iSZnwIXBlHX3MOUIQ=="
+  "resolved" "https://registry.npmjs.org/cypress/-/cypress-9.5.0.tgz"
+  "version" "9.5.0"
   dependencies:
     "@cypress/request" "^2.88.10"
     "@cypress/xvfb" "^1.2.4"

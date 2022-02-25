@@ -4,12 +4,13 @@
   "private": false,
   "homepage": "https://faizankhan16.github.io/todo/",
   "devDependencies": {
+    "cypress-xpath": "^1.6.2",
     "nodemon": "^2.0.15",
     "react-scripts": "0.9.0"
   },
   "dependencies": {
     "bootstrap": "^3.4.1",
-    "cypress": "^9.4.1",
+    "cypress": "^9.5.0",
     "immutability-helper": "^2.1.1",
     "keycode-js": "^0.0.4",
     "react": "^15.4.2",
