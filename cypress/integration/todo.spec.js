@@ -12,18 +12,22 @@ describe('First test', () => {
 
     //Checking and unchecking the boxes
     it('checking the strikethrough on the text after it is checked', () => {
-        cy.get('input[type="checkbox"]').eq(0).check().uncheck()
-        cy.get('input[type="checkbox"]').eq(1).check().should('be.checked');
-        cy.get('input[type="checkbox"]').eq(2).check().should('be.checked');
-        cy.get('label').eq(1).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
-        cy.get('label').eq(2).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
-    })
+        cy.get('input[type="checkbox"]').each( checkbox => {
+            cy.wrap(checkbox).check().should('be.checked')  
+        })
+        cy.get('label').each( lab => {
+            cy.wrap(lab).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
+        })
+        })
+
 
     //Entering a new task
     it('Verify if new item functionality', () => {
-        cy.get('[data-cy="addNew"]').type('New Task').type('{enter}');
-        cy.get('[data-cy="addNew"]').type('      ').type('{enter}');
+        cy.get('[data-cy="addNew"]').then( addNew => {
+            cy.wrap(addNew).type('New Task').type('{enter}');
+            cy.wrap(addNew).type('      ').type('{enter}');
         cy.get('[class="list-unstyled"]').should('not.contain', '      ')
+        
     })
 
     //Verifying the Search functionality
@@ -68,4 +72,5 @@ describe('First test', () => {
 //     // }
 // })
     })
+})
 })
