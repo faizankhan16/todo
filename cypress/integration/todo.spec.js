@@ -29,11 +29,11 @@ describe('First test', () => {
         cy.get('[class="list-unstyled"]').should('not.contain', '      ')
         
     })
-
+})
     //Verifying the Search functionality
     it('Verify the Search functionality', () => {
         cy.get('[class="button search "]').click()
-        cy.get('[data-cy="search"]').type('Build a React App').type('{enter}').type('{selectall}{backspace}')
+        cy.get('[data-cy="search"]').type('Build a React App').type('{enter}').clear()
     })
 
     //Verifying the esc, N and / keys
@@ -45,21 +45,12 @@ describe('First test', () => {
     it('verifying that all the list items in the completed tab have a line through and are checked', () => {
         cy.contains(/completed/i).click()
         cy.get('input[type="checkbox"]').then( checkbox => {
-            cy.wrap(checkbox).eq(0).check().should('be.checked');
+            cy.wrap(checkbox).each( items => {
+                cy.wrap(items).should('be.checked')
         })
-        
-        cy.get('input[type="checkbox"]').eq(1).check().should('be.checked');
-        cy.get('label').eq(0).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
-        cy.get('label').eq(1).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
-        cy.xpath('/*//a[contains(., "All")]').then( $all => {
-            cy.contains($all[0].innerText).click()
-            cy.xpath('/*//ul[@class="list-unstyled"]').then( $ul => {
-                let ul = $ul[0].childElementCount
-                for (var i = 0; i < ul; i++) {
-                cy.contains($ul[0].children[i].innerText).should('be.visible')
-                }
-            // cy.contains($ul[0].outerText)
-            })
+        cy.get('label').each( listItem => {
+            cy.wrap(listItem).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
+        })
         })
     //     cy.get('body').then(data => {
     //         if(data.contains(/there.are.no.items/i)){
@@ -67,10 +58,10 @@ describe('First test', () => {
     //         } else {
     //             cy.get('ul[class="list-unstyled"]').then($data => {
     //                 const data = $data[0].childElementCount;
-    //                 cy.contains(data).should('be.visible')
-    //         })
+    //                  cy.contains(data).should('be.visible')
+            })
 //     // }
-// })
-    })
 })
-})
+        
+
+
