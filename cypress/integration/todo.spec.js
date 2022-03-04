@@ -12,12 +12,16 @@ describe('First test', () => {
 
     //Checking and unchecking the boxes
     it('checking the strikethrough on the text after it is checked', () => {
-        cy.get('input[type="checkbox"]').each( checkbox => {
-            cy.wrap(checkbox).check().should('be.checked')  
-        })
-        cy.get('label').each( lab => {
-            cy.wrap(lab).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
-        })
+        cy.get('input[type="checkbox"]').eq(0).check().should('be.checked')
+        cy.get('input[type="checkbox"]').eq(1).check().should('be.checked')
+        cy.get('input[type="checkbox"]').eq(2).should('not.be.checked')
+        // each( checkbox => {
+        //     cy.wrap(checkbox).check().should('be.checked')  
+        // })
+        //     cy.get('label').each( lab => {
+        //     cy.wrap(lab).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
+        // })
+        
         })
 
     //Entering a new task
@@ -42,33 +46,19 @@ describe('First test', () => {
 
     // //Verify if the All button shows the checked and unchecked tasks
     it('verifying that all the list items in the completed tab have a line through and are checked', () => {
-        cy.get('input[type="checkbox"]').each( data => {
-            if(cy.wrap(data).should('be.checked')) {
-                cy.contains('Completed').click()
-                    cy.get('[type="checkbox"]').each( list => {
-                        cy.wrap(list).should('be.checked')
-                        cy.get('label').each( listItem =>{
-                            cy.wrap(listItem).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
-                        })
-                    })
-                 }
-                  else {
-                cy.contains('Completed').click()
-                cy.contains('[class="todolist"]', "There are no items.")
-            }
+       let arr= []
+       cy.get('.completed').each((item) => {
+            arr.push(item.text())
+       })
+        console.log(arr)
 
-
- // cy.contains(/completed/i).click()
-        // cy.get('input[type="checkbox"]').then( checkbox => {
-        //     cy.wrap(checkbox).each( items => {
-        //         cy.wrap(items).should('be.checked')
-        // })
-        // cy.get('label').each( listItem => {
-        //     cy.wrap(listItem).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
-        // })
-        // })
-})
-                // }
+    cy.contains('Completed').click()
+    let arr2= []
+       cy.get('.completed').each((item) => {
+            arr2.push(item.text())
+       })
+        console.log(arr2)
+    expect(arr).to.deep.equal(arr2)
 })
     })
     // })
