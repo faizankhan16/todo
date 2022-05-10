@@ -18,9 +18,9 @@ describe('First test', () => {
         // each( checkbox => {
         //     cy.wrap(checkbox).check().should('be.checked')  
         // })
-        //     cy.get('label').each( lab => {
-        //     cy.wrap(lab).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
-        // })
+          cy.get('label').each( lab => {
+          cy.wrap(lab).should('have.css', 'text-decoration', 'line-through solid rgb(170, 170, 170)')
+        })
         
         })
 
